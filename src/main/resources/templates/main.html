@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Magazyn</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+<div id="wrapper">
+    <div th:replace="fragments.html :: menu"></div>
+    <th:block th:each="product : ${products}">
+        <a th:if="${role == 'ADMIN'}" href="/new">Dodaj produkt</a>
+        <div class="product-list">
+            <div th:text="${product.name}" class="product-name"></div>
+            <div class="product-info">
+                <div th:text="'cena: ' + ${product.price}"></div>
+                <div th:text="'ilość ' + ${product.pieces}"></div>
+                <a th:if="${role == 'ADMIN'}" th:href="@{/edit/{id}(id=${product.id})}">Edytuj</a>
+            </div>
+        </div>
+    </th:block>
+</div>
+
+</body>
+</html>
