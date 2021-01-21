@@ -1,9 +1,15 @@
 package pl.edu.wszib.magazyn.model;
 
+import javax.persistence.*;
+
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String login;
     private String pass;
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     public User(int id, String login, String pass, Role role) {
